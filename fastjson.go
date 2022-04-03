@@ -87,8 +87,8 @@ type jsonArray struct {
 	value []interface{}
 }
 
-// NewJSONObject 构造JSONObject
-func NewJSONObject(jsonByte []byte) (JSONObject, error) {
+// NewJSONObjectFrom 构造JSONObject
+func NewJSONObjectFrom(jsonByte []byte) (JSONObject, error) {
 	var data map[string]interface{}
 	if err := json.Unmarshal(jsonByte, &data); err != nil {
 		return nil, err
@@ -98,8 +98,15 @@ func NewJSONObject(jsonByte []byte) (JSONObject, error) {
 	}, nil
 }
 
-// NewJSONArray 构造JSONArray
-func NewJSONArray(jsonByte []byte) (JSONArray, error) {
+func NewJSONObject() JSONObject {
+	var data = make(map[string]interface{})
+	return &jsonObject{
+		value: data,
+	}
+}
+
+// NewJSONArrayFrom 构造JSONArray
+func NewJSONArrayFrom(jsonByte []byte) (JSONArray, error) {
 	var data []interface{}
 	if err := json.Unmarshal(jsonByte, &data); err != nil {
 		return nil, err
@@ -107,6 +114,13 @@ func NewJSONArray(jsonByte []byte) (JSONArray, error) {
 	return &jsonArray{
 		value: data,
 	}, nil
+}
+
+func NewJSONArray() JSONArray {
+	var data = make([]interface{}, 0)
+	return &jsonArray{
+		value: data,
+	}
 }
 
 func ToJSONString(v interface{}) string {

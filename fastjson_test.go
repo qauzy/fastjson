@@ -36,13 +36,13 @@ func TestNewJSONObject(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewJSONObject(tt.args.jsonByte)
+			got, err := NewJSONObjectFrom(tt.args.jsonByte)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("NewJSONObject() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("NewJSONObjectFrom() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewJSONObject() = %v, want %v", got, tt.want)
+				t.Errorf("NewJSONObjectFrom() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -79,13 +79,13 @@ func TestNewJSONArray(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := NewJSONArray(tt.args.jsonByte)
+			got, err := NewJSONArrayFrom(tt.args.jsonByte)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("NewJSONArray() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("NewJSONArrayFrom() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewJSONArray() = %v, want %v", got, tt.want)
+				t.Errorf("NewJSONArrayFrom() = %v, want %v", got, tt.want)
 			}
 		})
 	}

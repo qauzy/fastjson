@@ -196,9 +196,9 @@ func (arr *jsonArray) GetJSONObject(index int) (JSONObject, error) {
 	v := arr.value[index]
 	switch t := v.(type) {
 	case string:
-		return NewJSONObject([]byte(t))
+		return NewJSONObjectFrom([]byte(t))
 	case []byte:
-		return NewJSONObject(t)
+		return NewJSONObjectFrom(t)
 	case JSONObject:
 		return t, nil
 	case map[string]interface{}:
@@ -217,9 +217,9 @@ func (arr *jsonArray) GetJSONArray(index int) (JSONArray, error) {
 	v := arr.value[index]
 	switch t := v.(type) {
 	case string:
-		return NewJSONArray([]byte(t))
+		return NewJSONArrayFrom([]byte(t))
 	case []byte:
-		return NewJSONArray(t)
+		return NewJSONArrayFrom(t)
 	case JSONArray:
 		return t, nil
 	case []interface{}:
